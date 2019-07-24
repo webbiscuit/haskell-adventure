@@ -1,4 +1,6 @@
 import Data.List
+import System.IO
+import System.Environment
 
 type SectionNumber = Int
 
@@ -38,11 +40,29 @@ formatChoice :: Choice -> String
 formatChoice c = (choiceText c) ++ " - " ++ show (destination c)
 
 displayChoices :: [Choice] -> String
-displayChoices xs = intercalate "\n" (map formatChoice xs)
+displayChoices xs = intercalate "\n" $ map formatChoice xs
 
 displaySection :: Maybe Section -> [Choice] -> String
 displaySection Nothing _ = ""
 displaySection (Just s) xs = sectionText s ++ "\n" ++ displayChoices (findChoices (sectionNumber s) xs) 
 
+parseIntoSections :: String -> [Section]
+parseIntoSections s = []
+
 play :: SectionNumber -> IO()
-play n = putStr(displaySection (findSection n sections) choices ++ "\n")
+play n = putStr $ displaySection (findSection n sections) choices ++ "\n"
+
+-- main = do
+--     contents <- getContents
+--     putStr $ map toUpper contents
+
+--gmatchRegexPR "^(\\d+)$" contents
+
+main2 = do
+    contents <- readFile "books/test.txt"
+    putStr contents
+
+main = do
+    args <- getArgs  
+    contents <- readFile $ head args
+    putStr contents

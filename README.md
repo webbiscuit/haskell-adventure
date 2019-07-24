@@ -1,1 +1,1 @@
-# haskell-adventure
+# haskelladventure
