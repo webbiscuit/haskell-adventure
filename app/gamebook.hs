@@ -59,7 +59,7 @@ play n = putStr $ displaySection (findSection n sections) choices ++ "\n"
 --gmatchRegexPR "^(\\d+)$" contents
 
 main2 = do
-    contents <- readFile "books/test.txt"
+    contents <- readFile "books/fridge.txt"
     putStr contents
 
 main = do

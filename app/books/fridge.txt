@@ -1,0 +1,54 @@
+1
+
+After a restless night full of sleepless dreams, you awake to find yourself trapped in a fridge. 
+
+Turn to 2.
+
+2
+
+There's some food all around.
+
+Try to open the door. Turn to 3.
+Eat some food. Turn to 4.
+Give up and die. Turn to 5.
+
+3
+
+The door does not seem to open.
+
+Try to open the door. Turn to 3.
+Eat some food. Turn to 4.
+Give up and die. Turn to 5.
+
+4
+
+There is so much food here.
+You eat so much food you die.
+
+The End
+
+5
+
+You have died.
+
+The End
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
