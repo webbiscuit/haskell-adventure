@@ -10,10 +10,12 @@ A functional project that can parse, play and analyse gamebooks.
 
 ## Running
 
-    ghci
-    :cd app
-    :load gamebook
+    stack ghci
     main2
+
+To test interactively:
+
+    :load Gamebook
 
 ## Books
 

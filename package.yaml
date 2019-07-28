@@ -28,7 +28,7 @@ library:
 
 executables:
   haskelladventure-exe:
-    main: gamebook.hs
+    main: Main.hs
     source-dirs: app
     ghc-options:
       - -threaded
