@@ -2,6 +2,7 @@ import Data.List
 import System.IO
 import System.Environment
 import Text.Regex.PCRE
+import Data.String.Utils
 
 type SectionNumber = Int
 
@@ -32,16 +33,16 @@ choices =
     ]
 
 findChoices :: SectionNumber -> [Choice] -> [Choice]
-findChoices n xs = filter (\x -> (source x) == n) xs
+findChoices n = filter (\x -> (source x) == n)
 
 findSection :: SectionNumber -> [Section] -> Maybe Section
-findSection n xs = find (\x -> (sectionNumber x) == n) xs
+findSection n = find (\x -> (sectionNumber x) == n) 
 
 formatChoice :: Choice -> String
 formatChoice c = (choiceText c) ++ " - " ++ show (destination c)
 
 displayChoices :: [Choice] -> String
-displayChoices xs = intercalate "\n" $ map formatChoice xs
+displayChoices = intercalate "\n" . map formatChoice
 
 displaySection :: Maybe Section -> [Choice] -> String
 displaySection Nothing _ = ""
@@ -57,17 +58,20 @@ play n = putStr $ displaySection (findSection n sections) choices ++ "\n"
 bookParseRegex :: String
 bookParseRegex = "^(\\d+)([\\s\\S]*?)(?=^\\d+)"
 
+trimSectionText :: String -> String
+trimSectionText = strip
+
 matchToSection :: [String] -> Section
-matchToSection [_,n, t] = Section (read n :: SectionNumber) t
+matchToSection [_,n, t] = Section (read n :: SectionNumber) $ trimSectionText t
 
 matchesToSections :: [[String]] -> [Section]
-matchesToSections s = map matchToSection s
+matchesToSections = map matchToSection
 
 parseBook :: String -> [[String]]
 parseBook s = s =~ bookParseRegex :: [[String]]
 
 parseBookIntoSections :: String -> [Section]
-parseBookIntoSections s = matchesToSections $ parseBook s
+parseBookIntoSections =  matchesToSections . parseBook
 
 loadBook :: IO String
 loadBook = readFile "books/fridge.txt"

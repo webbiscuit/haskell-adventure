@@ -21,6 +21,7 @@ description: Please see the README on GitHub at <https://github.com/webbiscuit/h
 dependencies:
   - base >= 4.7 && < 5
   - regex-pcre-builtin
+  - MissingH
 
 library:
   source-dirs: src
