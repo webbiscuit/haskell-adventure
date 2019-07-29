@@ -12,4 +12,5 @@ main = do
 main2 :: IO ()
 main2 = do
     contents <- loadBook
-    putStr contents
+    let sections = parseBookIntoSections contents
+    putStr "Thanks"
