@@ -54,12 +54,11 @@ sectionParseRegex = "(?i)(turn to|at|turning to|go to) (\\d+)"
 trimSectionText :: String -> String
 trimSectionText = strip
 
--- TODO pass in correct section
 matchToChoice :: Section -> [String] -> Choice
 matchToChoice section [_, _, d] = Choice (sectionNumber section) (read d :: SectionNumber) "Some choice"
 
 matchesToChoices :: Section -> [[String]] -> [Choice]
-matchesToChoices section = map (matchToChoice section)
+matchesToChoices = map . matchToChoice
 
 matchToSection :: [String] -> Section
 matchToSection [_,n, t] = Section (read n :: SectionNumber) $ trimSectionText t
