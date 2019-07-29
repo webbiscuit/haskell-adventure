@@ -55,11 +55,11 @@ trimSectionText :: String -> String
 trimSectionText = strip
 
 -- TODO pass in correct section
-matchToChoice :: [String] -> Choice
-matchToChoice [_, _, d] = Choice (1) (read d :: SectionNumber) "Some choice"
+matchToChoice :: Section -> [String] -> Choice
+matchToChoice section [_, _, d] = Choice (sectionNumber section) (read d :: SectionNumber) "Some choice"
 
-matchesToChoices :: [[String]] -> [Choice]
-matchesToChoices = map matchToChoice
+matchesToChoices :: Section -> [[String]] -> [Choice]
+matchesToChoices section = map (matchToChoice section)
 
 matchToSection :: [String] -> Section
 matchToSection [_,n, t] = Section (read n :: SectionNumber) $ trimSectionText t
@@ -68,7 +68,7 @@ matchesToSections :: [[String]] -> [Section]
 matchesToSections = map matchToSection
 
 parseSectionIntoChoices :: Section -> [Choice]
-parseSectionIntoChoices section = matchesToChoices $ parseSectionText $ sectionText section
+parseSectionIntoChoices section = matchesToChoices section $ parseSectionText $ sectionText section
 
 parseSectionsIntoChoices :: [Section] -> [Choice]
 parseSectionsIntoChoices xs = foldl (++) [] (map parseSectionIntoChoices xs)
