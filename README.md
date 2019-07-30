@@ -4,6 +4,8 @@
 
 A functional project that can parse, play and analyse gamebooks.
 
+This early version parses basic text files into section and choice objects.
+
 ## Building
 
     stack build
@@ -16,6 +18,14 @@ A functional project that can parse, play and analyse gamebooks.
 To test interactively:
 
     :load Gamebook
+
+## Usage
+
+    stack run < app/books/fridge.txt
+
+or (when built)
+
+    haskelladventure-exe.exe < path-to-your-gamebook
 
 ## Books
 
