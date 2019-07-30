@@ -1,5 +1,7 @@
 # Haskell Your Own Adventure
 
+[![Build Status](https://travis-ci.org/webbiscuit/haskell-adventure.svg?branch=master)](https://travis-ci.org/webbiscuit/haskell-adventure)
+
 ## What is it?
 
 A functional project that can parse, play and analyse gamebooks.
