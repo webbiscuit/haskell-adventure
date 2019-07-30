@@ -46,7 +46,7 @@ play sections choices n = putStr $ displaySection (findSection n sections) choic
 
 
 bookParseRegex :: String
-bookParseRegex = "^(\\d+)\\n([\\s\\S]*?)(?=^\\d+)"
+bookParseRegex = "^(\\d+)\\n([\\s\\S]*?)(?=^\\d+|\\z)"
 
 sectionParseRegex :: String
 sectionParseRegex = "(?i)(turn to|at|turning to|go to) (\\d+)"
