@@ -22,6 +22,8 @@ dependencies:
   - base >= 4.7 && < 5
   - regex-pcre-builtin
   - MissingH
+  - tasty
+  - tasty-hspec
 
 library:
   source-dirs: src

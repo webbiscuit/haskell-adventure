@@ -21,6 +21,14 @@ To test interactively:
 
     :load Gamebook
 
+## Running tests
+
+    stack test
+
+To watch files and continuously run tests:
+
+    stack test --file-watch --fast
+
 ## Usage
 
     stack run < app/books/fridge.txt
