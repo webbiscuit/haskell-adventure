@@ -1,7 +1,8 @@
 module Gamebook
   (
     loadBook,
-    parseBookIntoSections
+    parseBookIntoSections,
+    Section (..)
   ) where
 
 import Data.List
@@ -14,7 +15,7 @@ type SectionNumber = Int
 data Section = Section {
   sectionNumber :: SectionNumber,
   sectionText :: String 
-} deriving Show
+} deriving (Show, Eq)
 
 data Choice = Choice {
   source :: SectionNumber,
@@ -82,7 +83,7 @@ parseBookIntoSections :: String -> [Section]
 parseBookIntoSections =  matchesToSections . parseBook
 
 loadBook :: IO String
-loadBook = readFile "./app/books/lw1.txt"
+loadBook = readFile "./app/books/fridge.txt"
 
 test = [["1\n\nAfter a restless night full of sleepless dreams, you awake to find yourself trapped in a fridge. \n\nTurn to 2.\n\n","1","\n\nAfter a restless night full of sleepless dreams, you awake to find yourself trapped in a fridge. \n\nTurn to 2.\n\n"],["2\n\nThere's some food all around.\n\nTry to open the door. Turn to 3.\nEat some food. Turn to 4.\nGive up and die. Turn to 5.\n\n","2","\n\nThere's some food all around.\n\nTry to open the door. Turn to 3.\nEat some food. Turn to 4.\nGive up and die. Turn to 5.\n\n"],["3\n\nThe door does not seem to open.\n\nTry to open the door. Turn to 3.\nEat some food. Turn to 4.\nGive up and die. Turn to 5.\n\n","3","\n\nThe door does not seem to open.\n\nTry to open the door. Turn to 3.\nEat some food. Turn to 4.\nGive up and die. Turn to 5.\n\n"],["4\n\nThere is so much food here.\nYou eat so much food you die.\n\nThe End\n\n","4","\n\nThere is so much food here.\nYou eat so much food you die.\n\nThe End\n\n"],["5\n\nYou have died.\n\nThe End\n\n","5","\n\nYou have died.\n\nThe End\n\n"],["6\n\n","6","\n\n"],["7\n\n","7","\n\n"],["8\n\n","8","\n\n"],["9\n\n","9","\n\n"],["10\n\n","10","\n\n"],["11\n\n","11","\n\n"],["12\n\n","12","\n\n"],["13\n\n","13","\n\n"],["14\n\n","14","\n\n"]]
 test2 = do
