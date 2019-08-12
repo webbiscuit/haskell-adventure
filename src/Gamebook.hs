@@ -61,7 +61,7 @@ matchesToChoices :: Section -> [[String]] -> [Choice]
 matchesToChoices = map . matchToChoice
 
 matchToSection :: [String] -> Section
-matchToSection [_,n, t] = Section (read n :: SectionNumber) $ trimSectionText t
+matchToSection [_, n, t] = Section (read n :: SectionNumber) $ trimSectionText t
 
 matchesToSections :: [[String]] -> [Section]
 matchesToSections = map matchToSection

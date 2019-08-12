@@ -12,9 +12,3 @@ mainFromFileName = do
     args <- getArgs  
     contents <- readFile $ head args
     putStr contents
-
-main2 :: IO ()
-main2 = do
-    contents <- loadBook
-    let sections = parseBookIntoSections contents
-    putStr "Thanks"
