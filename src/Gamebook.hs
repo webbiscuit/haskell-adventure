@@ -1,8 +1,8 @@
 module Gamebook
-    (
-        loadBook,
-        parseBookIntoSections
-    ) where
+  (
+    loadBook,
+    parseBookIntoSections
+  ) where
 
 import Data.List
 import System.IO
@@ -12,14 +12,14 @@ import Data.String.Utils
 type SectionNumber = Int
 
 data Section = Section {
-    sectionNumber :: SectionNumber,
-    sectionText :: String 
+  sectionNumber :: SectionNumber,
+  sectionText :: String 
 } deriving Show
 
 data Choice = Choice {
-    source :: SectionNumber,
-    destination :: SectionNumber,
-    choiceText :: String 
+  source :: SectionNumber,
+  destination :: SectionNumber,
+  choiceText :: String 
 } deriving Show
 
 findChoices :: SectionNumber -> [Choice] -> [Choice]
@@ -82,12 +82,12 @@ parseBookIntoSections :: String -> [Section]
 parseBookIntoSections =  matchesToSections . parseBook
 
 loadBook :: IO String
-loadBook = readFile "./app/books/fridge.txt"
+loadBook = readFile "./app/books/lw1.txt"
 
 test = [["1\n\nAfter a restless night full of sleepless dreams, you awake to find yourself trapped in a fridge. \n\nTurn to 2.\n\n","1","\n\nAfter a restless night full of sleepless dreams, you awake to find yourself trapped in a fridge. \n\nTurn to 2.\n\n"],["2\n\nThere's some food all around.\n\nTry to open the door. Turn to 3.\nEat some food. Turn to 4.\nGive up and die. Turn to 5.\n\n","2","\n\nThere's some food all around.\n\nTry to open the door. Turn to 3.\nEat some food. Turn to 4.\nGive up and die. Turn to 5.\n\n"],["3\n\nThe door does not seem to open.\n\nTry to open the door. Turn to 3.\nEat some food. Turn to 4.\nGive up and die. Turn to 5.\n\n","3","\n\nThe door does not seem to open.\n\nTry to open the door. Turn to 3.\nEat some food. Turn to 4.\nGive up and die. Turn to 5.\n\n"],["4\n\nThere is so much food here.\nYou eat so much food you die.\n\nThe End\n\n","4","\n\nThere is so much food here.\nYou eat so much food you die.\n\nThe End\n\n"],["5\n\nYou have died.\n\nThe End\n\n","5","\n\nYou have died.\n\nThe End\n\n"],["6\n\n","6","\n\n"],["7\n\n","7","\n\n"],["8\n\n","8","\n\n"],["9\n\n","9","\n\n"],["10\n\n","10","\n\n"],["11\n\n","11","\n\n"],["12\n\n","12","\n\n"],["13\n\n","13","\n\n"],["14\n\n","14","\n\n"]]
 test2 = do
-    book <- loadBook
-    let sections = parseBookIntoSections book
-    let choices = parseSectionsIntoChoices sections
-    play sections choices 2
+  book <- loadBook
+  let sections = parseBookIntoSections book
+  let choices = parseSectionsIntoChoices sections
+  play sections choices 2
 test3 = Section 1 "I am a section.\n\nSomething happens. Turn to 2.\n\nSomething else. Turn to 3."
