@@ -3,7 +3,14 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages: []
+packages:
+- completed:
+    hackage: graphviz-2999.20.0.3@sha256:cde383c356bc41136ed53cd27e0800f46dbd2185600dd0de18d66d5c49739d94,7677
+    pantry-tree:
+      size: 4322
+      sha256: f7d9f7e161d68a5783d915358c28a95a2b8c94f3e302325fa604b91e8d2295c8
+  original:
+    hackage: graphviz-2999.20.0.3@sha256:cde383c356bc41136ed53cd27e0800f46dbd2185600dd0de18d66d5c49739d94,7677
 snapshots:
 - completed:
     size: 500539

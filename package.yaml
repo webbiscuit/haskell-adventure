@@ -24,6 +24,7 @@ dependencies:
   - MissingH
   - tasty
   - tasty-hspec
+  - graphviz
 
 library:
   source-dirs: src
