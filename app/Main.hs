@@ -5,7 +5,7 @@ import System.Environment
 
 main :: IO ()
 main = interact parser
-    where parser input = show (parseTextIntoSections input)
+    where parser input = show (parseTextIntoBook input)
 
 mainFromFileName :: IO ()
 mainFromFileName = do

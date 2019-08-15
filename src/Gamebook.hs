@@ -1,14 +1,21 @@
 module Gamebook
   (
     loadBook,
-    parseTextIntoSections,
-    Section (..)
+    parseTextIntoBook,
+    Book (..),
+    Section (..),
+    Choice (..)
   ) where
 
 import Text.Regex.PCRE
 import Data.String.Utils
 
 type SectionNumber = Int
+
+data Book = Book {
+  sections :: [Section],
+  choices :: [Choice]
+} deriving (Show, Eq)
 
 data Section = Section {
   sectionNumber :: SectionNumber,
@@ -62,7 +69,7 @@ parseSectionIntoChoices :: Section -> [Choice]
 parseSectionIntoChoices section = matchesToChoices section $ parseSectionText $ sectionText section
 
 parseSectionsIntoChoices :: [Section] -> [Choice]
-parseSectionsIntoChoices xs = concat (map parseSectionIntoChoices xs) 
+parseSectionsIntoChoices = concat . map parseSectionIntoChoices
 
 parseSectionText :: String -> [[String]]
 parseSectionText s = s =~ sectionParseRegex :: [[String]]
@@ -71,7 +78,14 @@ parseText :: String -> [[String]]
 parseText t = t =~ bookParseRegex :: [[String]]
 
 parseTextIntoSections :: String -> [Section]
-parseTextIntoSections =  matchesToSections . parseText
+parseTextIntoSections = matchesToSections . parseText
+
+parseTextIntoBook :: String -> Book
+parseTextIntoBook t = Book sections choices
+    where
+      sections = parseTextIntoSections t
+      choices = parseSectionsIntoChoices sections
+
 
 loadBook :: IO String
 loadBook = readFile "./app/books/fridge.txt"
@@ -82,5 +96,5 @@ loadBook = readFile "./app/books/fridge.txt"
 --   let sections = parseTextIntoSections book
 --   let choices = parseSectionsIntoChoices sections
 --   play sections choices 2
--- test3 = Section 1 "I am a section.\n\nSomething happens. Turn to 2.\n\nSomething else. Turn to 3."
--- test4 = "Some ‘ thing"
+--test3 = Section 1 "I am a section.\n\nSomething happens. Turn to 2.\n\nSomething else. Turn to 3."
+test4 = "1\n\nI am a section.\n\nSomething happens. Turn to 2.\n\nSomething else. Turn to 3.\n2\nSome stuff. Turn to 1.\n3\nDone.\nTurn to 2."
