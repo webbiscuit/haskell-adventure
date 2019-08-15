@@ -19,9 +19,8 @@ data Section = Section {
 
 data Choice = Choice {
   source :: SectionNumber,
-  destination :: SectionNumber,
-  choiceText :: String 
-} deriving Show
+  destination :: SectionNumber
+} deriving (Show, Eq)
 
 findChoices :: SectionNumber -> [Choice] -> [Choice]
 findChoices n = filter (\x -> (source x) == n)
@@ -50,7 +49,7 @@ sectionParseRegex :: String
 sectionParseRegex = "(?i)(turn to|at|turning to|go to) (\\d+)"
 
 matchToChoice :: Section -> [String] -> Choice
-matchToChoice section [_, _, d] = Choice (sectionNumber section) (read d :: SectionNumber) "Some choice"
+matchToChoice section [_, _, d] = Choice (sectionNumber section) (read d :: SectionNumber)
 
 matchesToChoices :: Section -> [[String]] -> [Choice]
 matchesToChoices = map . matchToChoice
