@@ -86,3 +86,4 @@ test2 = do
   let choices = parseSectionsIntoChoices sections
   play sections choices 2
 test3 = Section 1 "I am a section.\n\nSomething happens. Turn to 2.\n\nSomething else. Turn to 3."
+test4 = "Some ‘ thing"
