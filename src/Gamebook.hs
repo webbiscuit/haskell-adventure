@@ -39,9 +39,6 @@ displaySection :: Maybe Section -> [Choice] -> String
 displaySection Nothing _ = ""
 displaySection (Just s) xs = sectionText s ++ "\n" ++ displayChoices (findChoices (sectionNumber s) xs) 
 
-parseIntoSections :: String -> [Section]
-parseIntoSections s = []
-
 play :: [Section] -> [Choice] -> SectionNumber -> IO()
 play sections choices n = putStr $ displaySection (findSection n sections) choices ++ "\n"
 
