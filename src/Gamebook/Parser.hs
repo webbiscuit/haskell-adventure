@@ -6,7 +6,7 @@ module Gamebook.Parser
 import Text.Regex.PCRE
 import Data.String.Utils
 
-import Gamebook.Book
+import Gamebook.Book hiding (sections, choices)
 import Gamebook.Section
 import Gamebook.Choice
 
@@ -18,12 +18,14 @@ sectionParseRegex = "(?i)(turn to|at|turning to|go to) (\\d+)"
 
 matchToChoice :: Section -> [String] -> Choice
 matchToChoice section [_, _, d] = Choice (sectionNumber section) (read d :: SectionNumber)
+matchToChoice _ _ = error "Error parsing choice"
 
 matchesToChoices :: Section -> [[String]] -> [Choice]
 matchesToChoices = map . matchToChoice
 
 matchToSection :: [String] -> Section
 matchToSection [_, n, t] = Section (read n :: SectionNumber) $ strip t
+matchToSection _ = error "Error parsing section"
 
 matchesToSections :: [[String]] -> [Section]
 matchesToSections = map matchToSection
@@ -49,4 +51,4 @@ parseTextIntoBook t = Book sections choices
       sections = parseTextIntoSections t
       choices = parseSectionsIntoChoices sections
 
-test = "1\n\nI am a section.\n\nSomething happens. Turn to 2.\n\nSomething else. Turn to 3.\n2\nSome stuff. Turn to 1.\n3\nDone.\nTurn to 2."
+-- test = "1\n\nI am a section.\n\nSomething happens. Turn to 2.\n\nSomething else. Turn to 3.\n2\nSome stuff. Turn to 1.\n3\nDone.\nTurn to 2."
