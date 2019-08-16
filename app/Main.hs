@@ -1,6 +1,6 @@
 module Main where
 
-import Gamebook
+import Gamebook.Parser
 import System.Environment
 
 main :: IO ()

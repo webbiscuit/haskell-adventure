@@ -1,7 +1,10 @@
 import Test.Tasty
 import Test.Tasty.Hspec
 
-import Gamebook
+import Gamebook.Parser
+import Gamebook.Book
+import Gamebook.Section
+import Gamebook.Choice
 
 main :: IO ()
 main = do
