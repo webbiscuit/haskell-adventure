@@ -12,14 +12,10 @@ This early version parses basic text files into section and choice objects.
 
     stack build
 
-## Running
+## Debugging
 
     stack ghci
-    main2
-
-To test interactively:
-
-    :load Gamebook
+    parseTextIntoBook "1\nAll of these passages look alike. Turn to 1"
 
 ## Running tests
 
