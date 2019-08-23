@@ -29,7 +29,7 @@ library:
   source-dirs: src
 
 executables:
-  haskelladventure-exe:
+  haskelladventure:
     main: Main.hs
     source-dirs: app
     ghc-options:

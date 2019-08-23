@@ -31,7 +31,7 @@ To watch files and continuously run tests:
 
 or (when built)
 
-    haskelladventure-exe.exe < path-to-your-gamebook
+    haskelladventure.exe < path-to-your-gamebook
 
 ## Books
 
