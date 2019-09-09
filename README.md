@@ -28,11 +28,14 @@ To watch files and continuously run tests:
 ## Usage
 
     stack run -- --file app/books/fridge.txt
+
+or
+
     stack run -- --stdin < app/books/fridge.txt
 
 or (when built)
 
-    haskelladventure.exe < path-to-your-gamebook
+    haskelladventure.exe --stdin < path-to-your-gamebook
 
 ## Outputs
 
