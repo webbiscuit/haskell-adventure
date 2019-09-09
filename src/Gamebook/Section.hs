@@ -4,9 +4,10 @@ module Gamebook.Section
     SectionNumber
   ) where
 
+import qualified Data.Text as T
 type SectionNumber = Int
 
 data Section = Section {
   sectionNumber :: SectionNumber,
-  sectionText :: String 
+  sectionText :: T.Text 
 } deriving (Show, Eq)

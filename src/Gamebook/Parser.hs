@@ -3,9 +3,8 @@ module Gamebook.Parser
     parseTextIntoBook,
   ) where
 
+import qualified Data.Text as T
 import Text.Regex.PCRE
-import Data.String.Utils
-
 import Gamebook.Book hiding (sections, choices)
 import Gamebook.Section
 import Gamebook.Choice
@@ -16,25 +15,28 @@ bookParseRegex = "^(\\d+)\\n([\\s\\S]*?)(?=^\\d+|\\z)"
 sectionParseRegex :: String
 sectionParseRegex = "(?i)(turn to|at|turning to|go to) (\\d+)"
 
+toSectionNumber :: String -> SectionNumber
+toSectionNumber n = read n :: SectionNumber
+
 matchToChoice :: Section -> [String] -> Choice
-matchToChoice section [_, _, d] = Choice (sectionNumber section) (read d :: SectionNumber)
+matchToChoice section [_, _, d] = Choice (sectionNumber section) (toSectionNumber d)
 matchToChoice _ _ = error "Error parsing choice"
 
 matchesToChoices :: Section -> [[String]] -> [Choice]
 matchesToChoices = map . matchToChoice
 
 matchToSection :: [String] -> Section
-matchToSection [_, n, t] = Section (read n :: SectionNumber) $ strip t
+matchToSection [_, n, t] = Section (toSectionNumber n) $ T.strip (T.pack t)
 matchToSection _ = error "Error parsing section"
 
 matchesToSections :: [[String]] -> [Section]
 matchesToSections = map matchToSection
 
 parseSectionIntoChoices :: Section -> [Choice]
-parseSectionIntoChoices section = matchesToChoices section $ parseSectionText $ sectionText section
+parseSectionIntoChoices section = matchesToChoices section $ parseSectionText $ T.unpack $ sectionText section
 
 parseSectionsIntoChoices :: [Section] -> [Choice]
-parseSectionsIntoChoices = concat . map parseSectionIntoChoices
+parseSectionsIntoChoices = concatMap parseSectionIntoChoices
 
 parseSectionText :: String -> [[String]]
 parseSectionText s = s =~ sectionParseRegex :: [[String]]

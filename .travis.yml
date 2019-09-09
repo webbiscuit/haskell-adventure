@@ -30,11 +30,14 @@ before_install:
   - mkdir -p ~/.local/bin
   - export PATH=$HOME/.local/bin:$PATH
   - travis_retry curl -L https://get.haskellstack.org/stable/linux-x86_64.tar.gz | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
+  - stack install hlint
 
 install:
   # Build dependencies
   - stack --no-terminal --install-ghc test --only-dependencies
 
 script:
+  # Run linting
+  - hlint src
   # Build the package, its tests, and its docs and run the tests
-  - stack --no-terminal test --haddock --no-haddock-deps
+  - stack --no-terminal test --coverage --haddock --no-haddock-deps

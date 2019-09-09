@@ -8,18 +8,21 @@ A functional project that can parse, play and analyse gamebooks.
 
 This early version parses basic text files into section and choice objects.
 
+## Pre-reqs
+
+Stack
+
+    stack setup
+    stack install hlint
+
 ## Building
 
     stack build
 
-## Running
+## Debugging
 
     stack ghci
-    main2
-
-To test interactively:
-
-    :load Gamebook
+    parseTextIntoBook "1\nAll of these passages look alike. Turn to 1"
 
 ## Running tests
 
@@ -29,13 +32,30 @@ To watch files and continuously run tests:
 
     stack test --file-watch --fast
 
+## Linting
+
+    hlint .
+
 ## Usage
 
-    stack run < app/books/fridge.txt
+    stack run -- --file app/books/fridge.txt
+
+or
+
+    stack run -- --stdin < app/books/fridge.txt
 
 or (when built)
 
-    haskelladventure-exe.exe < path-to-your-gamebook
+    haskelladventure.exe --stdin < path-to-your-gamebook
+
+## Outputs
+
+There are two formats currently supported:
+
+debug (haskell debugging)
+json (parsed as json objects)
+
+    stack run -- --out json --file app/books/fridge.txt
 
 ## Books
 
