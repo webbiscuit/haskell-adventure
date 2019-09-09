@@ -2,28 +2,56 @@ module Main where
 
 import Gamebook.Parser
 import Gamebook.Format
-import System.Environment
-import System.Exit
+import Gamebook.Book
+import Options.Applicative
+import Data.Semigroup ((<>))
 
+data Options = Options
+    { source     :: Input
+    , output     :: String }
+
+data Input
+    = FileInput FilePath
+    | StdInput
+
+fileInput :: Parser Input
+fileInput = FileInput <$> strOption
+    (  long "file"
+    <> short 'f'
+    <> metavar "FILENAME"
+    <> help "Input file" )
+
+stdInput :: Parser Input
+stdInput = flag' StdInput
+    (  long "stdin"
+    <> help "Read from stdin" )
+
+input :: Parser Input
+input = fileInput <|> stdInput
+
+options :: Parser Options
+options = Options
+    <$> input
+    <*> strOption
+        ( long "output"
+        <> short 'o'
+        <> help "Output type. Supported: debug,json"
+        <> showDefault
+        <> value "debug"
+        <> metavar "OUTPUT_TYPE" )
+  
 main :: IO ()
-main = getArgs >>= parse >>= putStr . toDebug . parser
-    where parser = parseTextIntoBook
-          toDebug = toJson
+main = handleOptions =<< execParser opts
+    where
+    opts = info (options <**> helper)
+        ( fullDesc
+        <> progDesc "Parses gamebooks to the specified output"
+        <> header "Haskell Adventure" )
 
-parse :: [String] -> IO String
-parse ["-h"] = usage   >> exit
-parse ["-v"] = version >> exit
-parse []     = getContents
-parse fs     = concat `fmap` mapM readFile fs
+handleOptions :: Options -> IO ()
+handleOptions (Options (FileInput f) o) = readFile f >>= putStrLn . toOutput o . parseTextIntoBook
+handleOptions (Options StdInput o) = getContents >>= putStrLn . toOutput o . parseTextIntoBook
 
-usage :: IO ()
-usage   = putStrLn "Usage: haskelladventure [-vh] [file ..]"
-
-version :: IO ()
-version = putStrLn "Haskell Adventure 0.1"
-
-exit :: IO a
-exit    = exitWith ExitSuccess
-
-die :: IO a
-die     = exitWith (ExitFailure 1)
+toOutput :: String -> Book -> String
+toOutput "json" = toJson
+toOutput _ = show

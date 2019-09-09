@@ -26,6 +26,7 @@ dependencies:
   - tasty-hspec
   - aeson
   - text
+  - optparse-applicative
 
 library:
   source-dirs: src

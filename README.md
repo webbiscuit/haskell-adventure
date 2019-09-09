@@ -27,11 +27,21 @@ To watch files and continuously run tests:
 
 ## Usage
 
-    stack run < app/books/fridge.txt
+    stack run -- --file app/books/fridge.txt
+    stack run -- --stdin < app/books/fridge.txt
 
 or (when built)
 
     haskelladventure.exe < path-to-your-gamebook
+
+## Outputs
+
+There are two formats currently supported:
+
+debug (haskell debugging)
+json (parsed as json objects)
+
+    stack run -- --out json --file app/books/fridge.txt
 
 ## Books
 
