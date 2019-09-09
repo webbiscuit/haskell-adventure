@@ -9,8 +9,11 @@ import Data.GraphViz.Attributes.Complete
 import Data.Text.Lazy as L
 import Data.Text as T
 import Data.Word
+import Prelude
 
 import Gamebook.Book
+import Gamebook.Section
+import Gamebook.Choice
 
 ex1 :: Gr L.Text L.Text
 ex1 = mkGraph [ (1,"one")
@@ -25,7 +28,7 @@ ex1Params = nonClusteredParams {
   fmtEdge          = fe
   }
   where fn (_,l)   = [textLabel l]
-        fe (_,_,l) = [textLabel l]
+        fe (_,_,l) = []
         ga = [ GraphAttrs [ 
           RankDir   FromLeft,
           BgColor   [toWColor White]
@@ -42,13 +45,30 @@ myColorCL n | n == 1 = c $ (RGB 127 108 138)
             | n == 2 = c $ (RGB 175 177 112)
             | n == 3 = c $ (RGB 226 206 179)
             | n == 4 = c $ (RGB 172 126 100)
- where c rgb = toColorList [rgb]
+  where c rgb = toColorList [rgb]
 myColorCL _  = error "Error calculating colours"
 
 
 myColor :: Word8 -> Attribute
 myColor n = Color $ myColorCL n
 
+sectionToTuple :: Section -> (Int, L.Text)
+sectionToTuple s = (sectionNumber s, L.fromStrict $ sectionText s)
+
+sectionsToTuples :: [Section] -> [(Int, L.Text)]
+sectionsToTuples xs = Prelude.map sectionToTuple xs
+
+choiceToTuple :: Choice -> (Int, Int, L.Text)
+choiceToTuple c = (source c, destination c, "")
+
+choicesToTuples :: [Choice] -> [(Int, Int, L.Text)]
+choicesToTuples xs = Prelude.map choiceToTuple xs
+
+bookToGraph :: Book -> Gr L.Text L.Text
+bookToGraph b = mkGraph sectionData choiceData
+  where sectionData = sectionsToTuples $ sections b
+        choiceData = choicesToTuples $ choices b
+
 -- |Converts a book into a json string.
 toDot :: Book -> T.Text
-toDot _ = L.toStrict . renderDot $ G.toDot $ graphToDot ex1Params ex1
+toDot b = L.toStrict . renderDot $ G.toDot $ graphToDot ex1Params $ bookToGraph b
