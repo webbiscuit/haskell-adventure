@@ -1,5 +1,5 @@
-module FormatJsonTests(
-    formatJsonTests
+module FormatterSpec(
+    spec
   ) where
   
 import Test.Tasty.Hspec
@@ -8,8 +8,8 @@ import Gamebook.Book
 import Gamebook.Section
 import Gamebook.Choice
 
-formatJsonTests :: Spec
-formatJsonTests = do
+spec :: Spec
+spec = do
     describe "Tests the JSON formatter" $ do
 
         context "When the book has no sections or choices" $ do

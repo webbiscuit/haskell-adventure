@@ -1,5 +1,5 @@
-module ParseBookTests(
-  parseBookTests
+module ParserSpec(
+  spec
 ) where
 
 import Test.Tasty.Hspec
@@ -8,8 +8,8 @@ import Gamebook.Book
 import Gamebook.Section
 import Gamebook.Choice
 
-parseBookTests :: Spec
-parseBookTests = do
+spec :: Spec
+spec = do
   describe "Tests the book parser" $ do
 
     context "When the book string is empty" $ do
