@@ -1,9 +1,9 @@
-module FormatterSpec(
+module Format.JsonSpec(
     spec
   ) where
   
 import Test.Tasty.Hspec
-import Gamebook.Formatter
+import Gamebook.Format.Json
 import Gamebook.Book
 import Gamebook.Section
 import Gamebook.Choice
