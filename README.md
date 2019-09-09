@@ -8,6 +8,13 @@ A functional project that can parse, play and analyse gamebooks.
 
 This early version parses basic text files into section and choice objects.
 
+## Pre-reqs
+
+Stack
+
+    stack setup
+    stack install hlint
+
 ## Building
 
     stack build
@@ -24,6 +31,10 @@ This early version parses basic text files into section and choice objects.
 To watch files and continuously run tests:
 
     stack test --file-watch --fast
+
+## Linting
+
+    hlint .
 
 ## Usage
 

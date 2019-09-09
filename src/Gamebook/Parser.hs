@@ -36,7 +36,7 @@ parseSectionIntoChoices :: Section -> [Choice]
 parseSectionIntoChoices section = matchesToChoices section $ parseSectionText $ T.unpack $ sectionText section
 
 parseSectionsIntoChoices :: [Section] -> [Choice]
-parseSectionsIntoChoices = concat . map parseSectionIntoChoices
+parseSectionsIntoChoices = concatMap parseSectionIntoChoices
 
 parseSectionText :: String -> [[String]]
 parseSectionText s = s =~ sectionParseRegex :: [[String]]
