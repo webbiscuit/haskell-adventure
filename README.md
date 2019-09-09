@@ -36,6 +36,10 @@ To watch files and continuously run tests:
 
     hlint .
 
+## Documentation
+
+    stack haddock --no-haddock-deps
+
 ## Usage
 
     stack run -- --file app/books/fridge.txt

@@ -47,6 +47,7 @@ parseText t = t =~ bookParseRegex :: [[String]]
 parseTextIntoSections :: String -> [Section]
 parseTextIntoSections = matchesToSections . parseText
 
+-- |Converts a full book in text to a Book object.
 parseTextIntoBook :: String -> Book
 parseTextIntoBook t = Book sections choices
     where

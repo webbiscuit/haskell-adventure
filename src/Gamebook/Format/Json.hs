@@ -19,5 +19,6 @@ deriveJSON defaultOptions ''Section
 deriveJSON defaultOptions ''Choice
 deriveJSON defaultOptions ''Book
 
+-- |Converts a book into a json string.
 toJson :: Book -> T.Text
 toJson = L.toStrict . encodeToLazyText
