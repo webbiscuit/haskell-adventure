@@ -1,7 +1,7 @@
 module Main where
 
 import Gamebook.Parser
-import Gamebook.Format
+import Gamebook.Formatter
 import Gamebook.Book
 import Options.Applicative
 import Data.Semigroup ((<>))

@@ -1,7 +1,7 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# OPTIONS_GHC -fno-warn-orphans #-}
 
-module Gamebook.Format
+module Gamebook.Formatter
   (
     toJson,
   ) where
