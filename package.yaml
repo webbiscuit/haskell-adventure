@@ -24,6 +24,7 @@ dependencies:
   - MissingH
   - tasty
   - tasty-hspec
+  - aeson
 
 library:
   source-dirs: src

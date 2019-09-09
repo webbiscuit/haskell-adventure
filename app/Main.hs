@@ -1,12 +1,14 @@
 module Main where
 
 import Gamebook.Parser
+import Gamebook.Format
 import System.Environment
 import System.Exit
 
 main :: IO ()
-main = getArgs >>= parse >>= putStr . parser
-    where parser = show . parseTextIntoBook
+main = getArgs >>= parse >>= putStr . toDebug . parser
+    where parser = parseTextIntoBook
+          toDebug = toJson
 
 parse :: [String] -> IO String
 parse ["-h"] = usage   >> exit
