@@ -19,5 +19,5 @@ deriveJSON defaultOptions ''Section
 deriveJSON defaultOptions ''Choice
 deriveJSON defaultOptions ''Book
 
-toJson :: Book -> String
-toJson = T.unpack . L.toStrict . encodeToLazyText
+toJson :: Book -> T.Text
+toJson = L.toStrict . encodeToLazyText

@@ -5,6 +5,8 @@ import Gamebook.Format
 import Gamebook.Book
 import Options.Applicative
 import Data.Semigroup ((<>))
+import qualified Data.Text as T
+import qualified Data.Text.IO as T
 
 data Options = Options
     { source     :: Input
@@ -49,9 +51,9 @@ main = handleOptions =<< execParser opts
         <> header "Haskell Adventure" )
 
 handleOptions :: Options -> IO ()
-handleOptions (Options (FileInput f) o) = readFile f >>= putStrLn . toOutput o . parseTextIntoBook
-handleOptions (Options StdInput o) = getContents >>= putStrLn . toOutput o . parseTextIntoBook
+handleOptions (Options (FileInput f) o) = readFile f >>= T.putStrLn . toOutput o . parseTextIntoBook
+handleOptions (Options StdInput o) = getContents >>= T.putStrLn . toOutput o . parseTextIntoBook
 
-toOutput :: String -> Book -> String
+toOutput :: String -> Book -> T.Text
 toOutput "json" = toJson
-toOutput _ = show
+toOutput _ = T.pack . show
