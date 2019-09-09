@@ -24,7 +24,6 @@ default-extensions:
 dependencies:
   - base >= 4.7 && < 5
   - regex-pcre-builtin
-  - MissingH
   - graphviz
   - aeson
   - text
