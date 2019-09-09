@@ -2,6 +2,7 @@ module Main where
 
 import Gamebook.Parser
 import Gamebook.Format.Json
+import Gamebook.Format.Dot
 import Gamebook.Book
 import Options.Applicative
 import Data.Semigroup ((<>))
@@ -37,7 +38,7 @@ options = Options
     <*> strOption
         ( long "output"
         <> short 'o'
-        <> help "Output type. Supported: debug,json"
+        <> help "Output type. Supported: debug,json,dot"
         <> showDefault
         <> value "debug"
         <> metavar "OUTPUT_TYPE" )
@@ -56,4 +57,5 @@ handleOptions (Options StdInput o) = getContents >>= T.putStrLn . toOutput o . p
 
 toOutput :: String -> Book -> T.Text
 toOutput "json" = toJson
+toOutput "dot" = toDot
 toOutput _ = T.pack . show
