@@ -25,6 +25,7 @@ dependencies:
   - tasty
   - tasty-hspec
   - aeson
+  - text
 
 library:
   source-dirs: src
