@@ -40,13 +40,13 @@ sectionToTuple :: Section -> (Int, L.Text)
 sectionToTuple s = (sectionNumber s, L.pack . show $ sectionNumber s)
 
 sectionsToTuples :: [Section] -> [(Int, L.Text)]
-sectionsToTuples xs = Prelude.map sectionToTuple xs
+sectionsToTuples = Prelude.map sectionToTuple
 
 choiceToTuple :: Choice -> (Int, Int, L.Text)
 choiceToTuple c = (source c, destination c, "")
 
 choicesToTuples :: [Choice] -> [(Int, Int, L.Text)]
-choicesToTuples xs = Prelude.map choiceToTuple xs
+choicesToTuples = Prelude.map choiceToTuple
 
 bookToGraph :: Book -> Gr L.Text L.Text
 bookToGraph b = mkGraph sectionData choiceData
