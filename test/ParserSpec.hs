@@ -33,3 +33,11 @@ spec = do
             (Choice 1 3),
             (Choice 2 1)
           ])
+
+    context "When there is a book with embedded choice text" $ do
+      it "Should pick out the choice correctly" $ do
+        parseTextIntoBook "1\nThis is an infinite book. Okay, turn to 2 immediately.\n2\nOkay great! Something happens.\n\nIf you have less than 100 stamina, turn to 1 immediately." `shouldBe` (
+          Book [
+            (Section 1 "This is an infinite book. Okay, turn to 2 immediately."),
+            (Section 2 "Okay great! Something happens.\n\nIf you have less than 100 stamina, turn to 1 immediately.")
+          ] [(Choice 1 2), (Choice 2 1)])
