@@ -15,14 +15,8 @@ import Gamebook.Book
 import Gamebook.Section
 import Gamebook.Choice
 
-ex1 :: Gr L.Text L.Text
-ex1 = mkGraph [ (1,"one")
-              , (3,"three")
-              ]
-              [ (1,3,"edge label") ]
-
-ex1Params :: GraphvizParams n L.Text L.Text () L.Text
-ex1Params = nonClusteredParams { 
+dotParams :: GraphvizParams n L.Text L.Text () L.Text
+dotParams = nonClusteredParams { 
   globalAttributes = ga,
   fmtNode          = fn,
   fmtEdge          = fe
@@ -53,7 +47,7 @@ myColor :: Word8 -> Attribute
 myColor n = Color $ myColorCL n
 
 sectionToTuple :: Section -> (Int, L.Text)
-sectionToTuple s = (sectionNumber s, L.fromStrict $ sectionText s)
+sectionToTuple s = (sectionNumber s, L.pack . show $ sectionNumber s)
 
 sectionsToTuples :: [Section] -> [(Int, L.Text)]
 sectionsToTuples xs = Prelude.map sectionToTuple xs
@@ -69,6 +63,6 @@ bookToGraph b = mkGraph sectionData choiceData
   where sectionData = sectionsToTuples $ sections b
         choiceData = choicesToTuples $ choices b
 
--- |Converts a book into a json string.
+-- |Converts a book into a dot string.
 toDot :: Book -> T.Text
-toDot b = L.toStrict . renderDot $ G.toDot $ graphToDot ex1Params $ bookToGraph b
+toDot b = L.toStrict . renderDot $ G.toDot $ graphToDot dotParams $ bookToGraph b
