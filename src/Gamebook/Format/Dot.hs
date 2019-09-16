@@ -28,23 +28,13 @@ dotParams = nonClusteredParams {
           BgColor   [toWColor White]
           ], NodeAttrs  [ 
             shape     BoxShape,
-            FillColor (myColorCL 2),
+            FillColor fillColour,
             style filled
             ]
           ]
 
--- http://www.colorcombos.com/color-schemes/2025/ColorCombo2025.html
-myColorCL :: Word8 -> ColorList
-myColorCL n | n == 1 = c $ (RGB 127 108 138)
-            | n == 2 = c $ (RGB 175 177 112)
-            | n == 3 = c $ (RGB 226 206 179)
-            | n == 4 = c $ (RGB 172 126 100)
-  where c rgb = toColorList [rgb]
-myColorCL _  = error "Error calculating colours"
-
-
-myColor :: Word8 -> Attribute
-myColor n = Color $ myColorCL n
+fillColour :: ColorList
+fillColour = toColorList [RGB 175 177 112]
 
 sectionToTuple :: Section -> (Int, L.Text)
 sectionToTuple s = (sectionNumber s, L.pack . show $ sectionNumber s)
