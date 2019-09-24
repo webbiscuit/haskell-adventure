@@ -56,8 +56,8 @@ or (when built)
 
 There are a few formats currently supported:
 
-debug (haskell debugging)
-json (parsed as json objects)
+debug (haskell debugging)  
+json (parsed as json objects)  
 dot (graphviz dot format)
 
     stack run -- --output json --file app/books/fridge.txt
