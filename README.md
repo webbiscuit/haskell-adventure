@@ -4,9 +4,9 @@
 
 ## What is it?
 
-A functional project that can parse, play and analyse gamebooks.
+A functional project that can parse, play and analyse gamebooks from text.
 
-This early version parses basic text files into section and choice objects.
+This early version parses basic text files into section and choice objects and can output in a few different ways.
 
 ## Pre-reqs
 
@@ -34,7 +34,7 @@ To watch files and continuously run tests:
 
 ## Linting
 
-    hlint .
+    hlint src
 
 ## Documentation
 
@@ -54,7 +54,7 @@ or (when built)
 
 ## Outputs
 
-There are two formats currently supported:
+There are a few formats currently supported:
 
 debug (haskell debugging)
 json (parsed as json objects)
@@ -62,7 +62,7 @@ dot (graphviz dot format)
 
     stack run -- --output json --file app/books/fridge.txt
 
-## Books
+## Sample Books
 
 ### Fridge
 
