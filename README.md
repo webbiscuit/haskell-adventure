@@ -62,6 +62,14 @@ dot (graphviz dot format)
 
     stack run -- --output json --file app/books/fridge.txt
 
+### png, pdf, etc
+
+Right now the simplest way is to install [Graphviz](https://graphviz.org/), export to dot format and use the many outputs via the dot cli. Example:
+
+    stack run -- --output dot --file app/books/fridge.txt | dot -T png > out.png
+
+Where T (type) can be [any of these formats](https://emden.github.io/_pages/doc/info/output.html).
+
 ## Sample Books
 
 ### Fridge
