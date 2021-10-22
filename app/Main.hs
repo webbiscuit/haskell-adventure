@@ -5,7 +5,6 @@ import Gamebook.Format.Json
 import Gamebook.Format.Dot
 import Gamebook.Book
 import Options.Applicative
-import Data.Semigroup ((<>))
 import qualified Data.Text as T
 import qualified Data.Text.IO as T
 

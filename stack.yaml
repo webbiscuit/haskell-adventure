@@ -17,7 +17,7 @@
 #
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
-resolver: lts-14.5
+resolver: lts-18.13
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -29,7 +29,7 @@ resolver: lts-14.5
 #   - auto-update
 #   - wai
 packages:
-- .
+  - .
 # Dependency packages to be pulled from upstream that are not in the resolver.
 # These entries can reference officially published versions as well as
 # forks / in-progress versions pinned to a git hash. For example:
@@ -40,7 +40,7 @@ packages:
 #   commit: e7b331f14bcffb8367cd58fbfc8b40ec7642100a
 #
 extra-deps:
-  - graphviz-2999.20.0.3@sha256:cde383c356bc41136ed53cd27e0800f46dbd2185600dd0de18d66d5c49739d94,7677
+  # - graphviz-2999.20.0.3@sha256:cde383c356bc41136ed53cd27e0800f46dbd2185600dd0de18d66d5c49739d94,7677
 # Override default flag values for local packages and extra-deps
 # flags: {}
 
