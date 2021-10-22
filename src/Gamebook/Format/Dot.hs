@@ -8,7 +8,6 @@ import Data.GraphViz.Printing
 import Data.GraphViz.Attributes.Complete
 import Data.Text.Lazy as L
 import Data.Text as T
-import Data.Word
 import Prelude
 
 import Gamebook.Book
@@ -22,7 +21,7 @@ dotParams = nonClusteredParams {
   fmtEdge          = fe
   }
   where fn (_,l)   = [textLabel l]
-        fe (_,_,l) = []
+        fe (_,_,_) = []
         ga = [ GraphAttrs [ 
           RankDir   FromLeft,
           BgColor   [toWColor White]
