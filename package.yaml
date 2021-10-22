@@ -38,6 +38,7 @@ ghc-options:
   - -Wredundant-constraints
   - -fwrite-ide-info
   - -hiedir=.hie
+  - -Werror
 
 library:
   source-dirs: src
@@ -60,6 +61,10 @@ tests:
   haskelladventure-test:
     main: Spec.hs
     source-dirs: test
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
     dependencies:
       - haskelladventure
       - tasty
